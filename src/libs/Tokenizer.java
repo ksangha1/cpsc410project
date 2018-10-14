@@ -1,9 +1,5 @@
 package libs;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,9 +11,10 @@ public class Tokenizer {
     private int currentToken;
     private static Tokenizer theTokenizer;
 
-    private Tokenizer(List<String> literalsList){
-        literals = literalsList;
-        //tokenize();
+    private Tokenizer( List<String> literaslList, String userInput){
+        literals = literaslList;
+        program = userInput;
+        tokenize();
     }
 
     private void tokenize (){
@@ -67,7 +64,10 @@ public class Tokenizer {
 
     public String getAndCheckNext(String regexp){
         String s = getNext();
-        if (!s.matches(regexp)) System.exit(0);
+        if (!s.matches(regexp)) {
+            System.out.println("getAndCheckNext Failed for: " + regexp + " not Matching " + s);
+            System.exit(0);
+        }
         System.out.println("matched: "+s+"  to  "+regexp);
         return s;
     }
@@ -76,9 +76,9 @@ public class Tokenizer {
         return currentToken<tokens.length;
     }
 
-    public static void makeTokenizer(List<String> literals){
+    public static void makeTokenizer(List<String> literals, String userInput){
         if (theTokenizer==null){
-            theTokenizer = new Tokenizer(literals);
+            theTokenizer = new Tokenizer(literals, userInput);
         }
     }
 
@@ -87,3 +87,4 @@ public class Tokenizer {
     }
 
 }
+

@@ -1,10 +1,15 @@
 package libs;
 
-import javax.print.attribute.standard.JobMediaSheetsCompleted;
+import ast.POSITIONServices;
+import ast.STATEServices;
+import ast.TRANSITIONServices;
+
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class InputBox extends JFrame {
 
@@ -40,6 +45,19 @@ public class InputBox extends JFrame {
         inputButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 System.out.println(inputDSL.getText());
+                List<String> literals = Arrays.asList("STATE", "TRANSITION", "POSITION", "(", ")");
+                Tokenizer.makeTokenizer(literals,inputDSL.getText());
+                Latex latex = new Latex();
+                StringBuilder sb = latex.getSb();
+                System.out.println(sb.toString());
+                STATEServices state = new STATEServices();
+                TRANSITIONServices transition = new TRANSITIONServices();
+                POSITIONServices position = new POSITIONServices();
+                state.parse();
+                transition.parse();
+                position.parse();
+                state.evaluate();
+
             }
         });
         inputWindow.add(inputButton);
