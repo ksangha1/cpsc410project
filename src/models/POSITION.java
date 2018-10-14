@@ -44,4 +44,19 @@ public class POSITION {
         return validDirs.contains(dir);
     }
 
+    public static String mapDir(String dir)
+    {
+        switch (dir) {
+            case "N": return "above";
+            case "S": return "below";
+            case "E": return "right";
+            case "W": return "left";
+            case"SW": return "below left";
+            case"SE": return "below right";
+            case"NE": return "above right";
+            case"NW": return "above left";
+        }
+        return "";
+    }
+
 }

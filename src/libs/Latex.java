@@ -10,12 +10,10 @@ public class Latex {
       sb.append("\\documentclass{article}\n" +
               "\n" +
               "\\usepackage{tikz}\n" +
+              "\\\\usetikzlibrary{positioning}\n" +
               "\\usetikzlibrary{automata,positioning}\n" +
               "\\begin{document}\n" +
-              "\\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]\n " +
-               "USERINPUT\n" +
-              "\\end{tikzpicture}\n" +
-              "\\end{document}");
+              "\\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]\n");
     }
 
 
@@ -27,5 +25,11 @@ public class Latex {
     public void addSB(String input)
     {
         sb.append(input);
+    }
+
+    public void endSB()
+    {
+        sb.append( "\\end{tikzpicture}\n" +
+                    "\\end{document}");
     }
 }
