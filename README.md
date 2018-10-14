@@ -1,2 +1,2 @@
 # cpsc410project
-CPSC 410 Team 24 Project
+CPSC 410 Team Let's Not LaTeX Project
