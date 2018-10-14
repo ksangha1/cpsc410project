@@ -3,6 +3,7 @@ package libs;
 import ast.POSITIONServices;
 import ast.STATEServices;
 import ast.TRANSITIONServices;
+import ui.Main;
 
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
@@ -45,8 +46,7 @@ public class InputBox extends JFrame {
         inputButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 System.out.println(inputDSL.getText());
-                List<String> literals = Arrays.asList("STATE", "TRANSITION", "POSITION", "(", ")");
-                Tokenizer.makeTokenizer(literals,inputDSL.getText());
+                Tokenizer.makeTokenizer(Main.literals,inputDSL.getText());
                 Latex latex = new Latex();
                 StringBuilder sb = latex.getSb();
                 System.out.println(sb.toString());

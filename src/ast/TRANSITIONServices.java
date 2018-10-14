@@ -2,6 +2,7 @@ package ast;
 
 import libs.Node;
 import models.TRANSITION;
+import ui.Main;
 
 import java.util.Stack;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class TRANSITIONServices extends Node {
                   nodes.add(temp);
                   start = value = dest = "";
               }
-              if(!current.equals("(") && !current.equals(")") && !current.equals("TRANSITION")) {
+              if(!Main.literals.contains(current) && !current.equals(" ")) {
                   if (start.isEmpty()) {
                       start = current;
                   } else if (value.isEmpty()) {

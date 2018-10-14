@@ -6,6 +6,7 @@ import java.util.*;
 
 import libs.Tokenizer;
 import models.STATE;
+import ui.Main;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
@@ -36,7 +37,7 @@ public class STATEServices extends Node {
                 } else {
                     if (current.equals("accept") || current.equals("start")) {
                         status = current;
-                    } else if(!current.equals("(") && !current.equals(")")) {
+                    } else if(!Main.literals.contains(current) && !current.equals(" ")) {
                         name = current;
                     }
                 }
