@@ -10,7 +10,7 @@ public class Latex {
       sb.append("\\documentclass{article}\n" +
               "\n" +
               "\\usepackage{tikz}\n" +
-              "\\\\usetikzlibrary{positioning}\n" +
+              "\\usetikzlibrary{positioning}\n" +
               "\\usetikzlibrary{automata,positioning}\n" +
               "\\begin{document}\n" +
               "\\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]\n");
@@ -22,7 +22,7 @@ public class Latex {
         return sb;
     }
 
-    public void addSB(String input)
+    public void addSB(StringBuilder input)
     {
         sb.append(input);
     }

@@ -2,7 +2,10 @@ package models;
 
 public class STATE {
 
-    public STATE(){};
+    public STATE(){
+        iscreated=false;
+    };
+    Boolean iscreated;
     String name;
     String status;
 
@@ -21,4 +24,10 @@ public class STATE {
 
     public String getStatus()
     {return this.status;}
+
+    public Boolean isCreated()
+    {return this.iscreated;}
+
+    public void create()
+    { this.iscreated=true;}
 }

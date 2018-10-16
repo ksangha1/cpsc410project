@@ -1,25 +1,22 @@
 package ast;
 
 import libs.Node;
-
-import java.util.*;
-
-import libs.Tokenizer;
 import models.STATE;
 import ui.Main;
 
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Stack;
 
 public class STATEServices extends Node {
     String name;
     String status;
     private Stack<String> stack = new Stack<>();
-    private ArrayList<STATE> nodes = new ArrayList<>();
+    public static ArrayList<STATE> nodes = new ArrayList<>();
 
 
     @Override
     public void parse()  {
+        //TODO: seems not able to parse STATE((q1,(start,accepting)) where 2 status took place
         tokenizer.getAndCheckNext("STATE");
         boolean end = false;
         while(!tokenizer.checkToken("TRANSITION")) {
@@ -40,6 +37,7 @@ public class STATEServices extends Node {
                     } else if(!Main.literals.contains(current) && !current.equals(" ")) {
                         name = current;
                     }
+
                 }
             }
         }
@@ -47,9 +45,15 @@ public class STATEServices extends Node {
     }
 
     @Override
-    public void evaluate()  {
+    public StringBuilder evaluate()  {
+        System.out.println("in STATE evaluation ");
         for (STATE s: nodes) {
-
+            System.out.println("STATE EVALUATION: state name:"+s.getName() +"\n  status: "+s.getStatus());
+            //check status
+            if(s.getStatus()!=null)
+                if(!s.getStatus().equals("start") && !s.getStatus().equals("accept"))
+                    throw new java.lang.Error("INPUT ERROR: invalid status");
         }
+        return new StringBuilder();
     }
 }

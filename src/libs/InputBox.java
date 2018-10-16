@@ -8,15 +8,14 @@ import ui.Main;
 import javax.swing.*;
 import javax.swing.text.DefaultCaret;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.Arrays;
-import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InputBox extends JFrame {
 
     JButton inputButton;
 
-    public InputBox(){
+    public InputBox() {
 
         super();
         setSize(800, 450);
@@ -44,12 +43,10 @@ public class InputBox extends JFrame {
         inputButton  = new JButton("Input");
         inputButton.setSize(800, 250);
         inputButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 System.out.println(inputDSL.getText());
                 Tokenizer.makeTokenizer(Main.literals,inputDSL.getText());
                 Latex latex = new Latex();
-                StringBuilder sb = latex.getSb();
-                System.out.println(sb.toString());
                 STATEServices state = new STATEServices();
                 TRANSITIONServices transition = new TRANSITIONServices();
                 POSITIONServices position = new POSITIONServices();
@@ -57,7 +54,12 @@ public class InputBox extends JFrame {
                 transition.parse();
                 position.parse();
                 state.evaluate();
-
+                latex.addSB(position.evaluate());
+                latex.addSB(transition.evaluate());
+                latex.endSB();
+                StringBuilder sb = latex.getSb();
+                //System.out.println(sb.toString());
+                System.out.println(sb);
             }
         });
         inputWindow.add(inputButton);
