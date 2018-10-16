@@ -60,6 +60,7 @@ public class POSITIONServices extends STATEServices {
                     status += translateStatus(start);
 
                 sb_pos.append("\t\\node[state"+status+"] (" + start.getName() + ") {" + start.getName() + "};\n");
+                start.setCreated();
             }
 
             if(!POSITION.checkDir(p.getDir()))
@@ -72,7 +73,7 @@ public class POSITIONServices extends STATEServices {
             if(dest.getStatus()!=null)
                 status += translateStatus(dest);
             sb_pos.append("\t\\node[state"+status+", "+latexDir+" of="+p.getBase()+"] ("+p.getNode()+") {"+p.getNode()+"};\n");
-
+            dest.setCreated();
         }
         return sb_pos;
     }

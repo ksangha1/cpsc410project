@@ -5,4 +5,5 @@ STATE((q1,(start)), (q2, (accept)))TRANSITION(q1,(0),q2)TRANSITION(q2,(1),q1)POS
 // adding self-loop
 STATE((q1,(start)), (q2, (accept)))TRANSITION(q1,(0),q2)TRANSITION(q2,(1),q1)TRANSITION(q2,(3),q2)POSITION(q2, NE, q1)
 
-
+// set position related to existing node
+STATE((q1,(start)), (q2, (accept)),(q3))TRANSITION(q1,(1),q2)TRANSITION(q3,(3),q1)POSITION(q2, N, q1)POSITION(q3, N, q2)

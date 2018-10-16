@@ -50,9 +50,10 @@ public class STATEServices extends Node {
         for (STATE s: nodes) {
             System.out.println("STATE EVALUATION: state name:"+s.getName() +"\n  status: "+s.getStatus());
             //check status
-            if(s.getStatus()!=null)
-                if(!s.getStatus().equals("start") && !s.getStatus().equals("accept"))
+            if(s.getStatus()!="") {
+                if (!s.getStatus().equals("start") && !s.getStatus().equals("accept"))
                     throw new java.lang.Error("INPUT ERROR: invalid status");
+            }
         }
         return new StringBuilder();
     }
