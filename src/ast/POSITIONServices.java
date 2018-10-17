@@ -94,8 +94,8 @@ public class POSITIONServices extends STATEServices {
             subsb += ", initial";
         else if (s.getStatus().equals("accept"))
             subsb += ", accepting";
-        else if(s.getStatus().equals("intial accepting")) {
-            //TODO: when both start and accept took place
+        else if(s.getStatus().equals("start,accept")) {
+            subsb += ", initial, accepting";
         }
         return subsb;
     }

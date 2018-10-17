@@ -17,7 +17,9 @@ public class TRANSITION {
 
     public void setValue(String value)
     {
-        this.value = value;
+        /* Removing extra "," char */
+        int last = value.length();
+        this.value = value.substring(0,last-1);
     }
 
     public void setEnd(String end)

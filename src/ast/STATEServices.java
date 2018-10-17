@@ -16,9 +16,8 @@ public class STATEServices extends Node {
 
     @Override
     public void parse()  {
-        //TODO: seems not able to parse STATE((q1,(start,accepting)) where 2 status took place
+        name = status = "";
         tokenizer.getAndCheckNext("STATE");
-        boolean end = false;
         while(!tokenizer.checkToken("TRANSITION")) {
             String current = tokenizer.getNext();
             if (current.equals("(")) stack.push(current);
@@ -26,14 +25,18 @@ public class STATEServices extends Node {
                 if (current.equals(")")) stack.pop();
                 if (current.equals(")") && stack.size() == 1) {
                     STATE temp = new STATE();
+                    if(!status.isEmpty()) {
+                        int remove = status.length();
+                        this.status = status.substring(0, remove - 1);
+                    }
                     temp.setName(this.name);
                     temp.setStatus(this.status);
                     this.name = "";
                     this.status = "";
                     nodes.add(temp);
                 } else {
-                    if (current.equals("accept") || current.equals("start")) {
-                        status = current;
+                    if (current.contains("accept") || current.equals("start")) {
+                        this.status += current + ",";
                     } else if(!Main.literals.contains(current) && !current.equals(" ")) {
                         name = current;
                     }
@@ -51,7 +54,7 @@ public class STATEServices extends Node {
             System.out.println("STATE EVALUATION: state name:"+s.getName() +"\n  status: "+s.getStatus());
             //check status
             if(s.getStatus()!="") {
-                if (!s.getStatus().equals("start") && !s.getStatus().equals("accept"))
+                if (!s.getStatus().contains("start") && !s.getStatus().contains("accept"))
                     throw new java.lang.Error("INPUT ERROR: invalid status");
             }
         }

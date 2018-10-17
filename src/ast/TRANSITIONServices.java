@@ -36,8 +36,8 @@ public class TRANSITIONServices extends Node {
               if(!Main.literals.contains(current) && !current.equals(" ")) {
                   if (start.isEmpty()) {
                       start = current;
-                  } else if (value.isEmpty()) {
-                      value = current;
+                  } else if (stack.size() == 2) {
+                      value += current +",";
                   } else if (dest.isEmpty()) {
                       dest = current;
                   }

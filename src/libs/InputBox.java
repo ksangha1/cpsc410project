@@ -54,6 +54,9 @@ public class InputBox extends JFrame {
                 StringBuilder sb = latex.getSb();
                 System.out.println(sb);
                 /* Output final Latex code to Window */
+                this.createOutputBox(sb);
+            }
+            private void createOutputBox(StringBuilder sb) {
                 JFrame output = new JFrame();
                 output.setSize(800,600);
                 output.setLayout(new BorderLayout());
@@ -68,7 +71,6 @@ public class InputBox extends JFrame {
                 out.add(outputcode);
                 output.add(out, BorderLayout.CENTER);
                 output.setVisible(true);
-
             }
         });
         inputWindow.add(inputButton);
