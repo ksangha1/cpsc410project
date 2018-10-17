@@ -28,6 +28,6 @@ public class STATE {
     public Boolean isCreated()
     {return this.iscreated;}
 
-    public void create()
+    public void setCreated()
     { this.iscreated=true;}
 }

@@ -10,5 +10,5 @@ public abstract class Node {
     static protected PrintWriter writer;
     protected Tokenizer tokenizer = Tokenizer.getTokenizer();
     abstract public void parse();
-    abstract public void evaluate();
+    abstract public StringBuilder evaluate();
 }

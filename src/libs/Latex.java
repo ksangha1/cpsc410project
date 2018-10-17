@@ -8,7 +8,6 @@ public class Latex {
     {
       sb = new StringBuilder();
       sb.append("\\documentclass{article}\n" +
-              "\n" +
               "\\usepackage{tikz}\n" +
               "\\usetikzlibrary{positioning}\n" +
               "\\usetikzlibrary{automata,positioning}\n" +
